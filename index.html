@@ -1,1 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>나의 진로 로드맵</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#eceef3; --paper:#fff; --ink:#22243a; --title:#d9d9de; --head:#e6e8f3;
+  --line:#2b2d42; --soft:#8b8fa8; --acc:#3d4a9a; --fill:#eef1ff;
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#15161d;}
+}
+:root[data-theme="dark"]{--bg:#15161d;}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:'Noto Sans KR',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--ink)}
+.bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:14px 12px 4px}
+button{font:inherit;font-weight:500;border:0;border-radius:8px;padding:10px 18px;cursor:pointer;background:var(--acc);color:#fff}
+button.sub{background:transparent;color:var(--ink);border:1px solid var(--soft)}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #f0a020;outline-offset:2px}
+.wrap{overflow-x:auto;padding:12px}
+#sheet{width:794px;margin:0 auto;background:var(--paper);color:#22243a;padding:0 0 36px;font-size:15px;line-height:1.5}
+.tag{padding:18px 40px 6px;font-size:14px}
+.ttl{background:var(--title);text-align:center;font-size:30px;font-weight:700;padding:14px 0;color:#1f2250;margin:0 0 0}
+.meta{display:flex;justify-content:flex-end;gap:16px;padding:10px 40px 0;font-size:14px}
+.sec{padding:0 40px}
+h2{font-size:19px;font-weight:700;margin:22px 0 10px;color:#1f2250}
+.row{display:flex;align-items:flex-end;gap:8px;margin:8px 0;flex-wrap:nowrap}
+.row label{white-space:nowrap}
+input,textarea{font:inherit;color:var(--acc);background:transparent;border:0;border-bottom:1px solid var(--line);padding:2px 4px;border-radius:0;min-width:0}
+input:focus,textarea:focus{background:var(--fill)}
+.row input{flex:1}
+.s{width:90px!important;flex:none!important}
+.xs{width:50px!important;flex:none!important;text-align:center}
+.m{width:150px!important;flex:none!important}
+table{width:100%;border-collapse:collapse;margin-top:6px}
+th{background:var(--head);border:1px solid var(--line);padding:7px;font-weight:700;font-size:15px}
+td{border:1px solid var(--line);padding:8px 10px;vertical-align:top}
+td.p{text-align:center;width:90px;vertical-align:middle}
+td .row{margin:4px 0}
+td .row input{border-bottom:1px dotted var(--soft)}
+.chk{display:flex;align-items:center;gap:6px;margin-top:6px;cursor:pointer}
+.chk input{width:16px;height:16px;accent-color:var(--acc);border:0}
+.inl{display:flex;align-items:flex-end;flex-wrap:wrap;gap:6px;margin:8px 0}
+.inl input{width:170px}
+.inl input.w{width:230px}
+.checks{display:flex;gap:18px;flex-wrap:wrap;margin:18px 40px 8px;font-size:14px}
+.checks label{display:flex;align-items:center;gap:5px;cursor:pointer}
+.checks input{width:15px;height:15px;accent-color:var(--acc)}
+.note{padding:0 40px;font-size:14px;margin-top:14px}
+.hint{text-align:center;color:var(--soft);font-size:13px;margin:6px 12px 0}
+</style>
+</head>
+<body>
+<div class="bar">
+  <button id="png">이미지로 저장</button>
+  <button class="sub" id="reset">모두 지우기</button>
+</div>
+<p class="hint">빈칸을 눌러 입력한 뒤 '이미지로 저장'을 누르세요. (PNG)</p>
+
+<div class="wrap">
+<div id="sheet">
+  <div class="tag">활동지 ② · 나만의 실천 미션</div>
+  <h1 class="ttl">나의 진로 로드맵</h1>
+  <div class="meta">
+    <span>학년·반: <input class="s" aria-label="학년 반"></span>
+    <span>이름: <input class="s" aria-label="이름"></span>
+    <span>날짜: <input class="s" aria-label="날짜"></span>
+  </div>
+
+  <div class="sec">
+    <h2>나의 출발점</h2>
+    <div class="row"><label>관심 분야:</label><input aria-label="관심 분야"><label>강점:</label><input aria-label="강점" style="flex:1.6"></div>
+    <div class="row"><label>배우고 싶은 행동:</label><input aria-label="배우고 싶은 행동"></div>
+    <div class="row"><label>내 목표:</label><input aria-label="내 목표"></div>
+    <div class="row"><label>가능한 시간: 주</label><input class="xs" aria-label="주당 시간"><label>분</label><label style="margin-left:10px">도움이 된 공부 방법:</label><input aria-label="공부 방법"></div>
+
+    <h2>시기마다 행동 하나, 확인 방법 하나</h2>
+    <table>
+      <tr><th style="width:90px">시기</th><th>할 행동과 완료 날짜</th><th style="width:36%">완료 확인 방법</th></tr>
+      <tr>
+        <td class="p">이번 주</td>
+        <td><div class="row"><label>행동:</label><input></div><div class="row"><label>날짜:</label><input></div></td>
+        <td><div class="row"><label>남길 결과:</label><input></div><label class="chk"><input type="checkbox">완료</label></td>
+      </tr>
+      <tr>
+        <td class="p">이번 달</td>
+        <td><div class="row"><label>행동:</label><input></div><div class="row"><label>날짜:</label><input></div></td>
+        <td><div class="row"><label>남길 결과:</label><input></div><label class="chk"><input type="checkbox">완료</label></td>
+      </tr>
+      <tr>
+        <td class="p">이번 학기</td>
+        <td><div class="row"><label>행동:</label><input></div><div class="row"><label>날짜:</label><input></div></td>
+        <td><div class="row"><label>남길 결과:</label><input></div><label class="chk"><input type="checkbox">완료</label></td>
+      </tr>
+    </table>
+
+    <h2>막혔을 때의 다음 행동</h2>
+    <div class="inl"><span>만약</span><input class="w" aria-label="만약"><span>하면, 나는</span><input class="w" aria-label="나는"><span>하겠다.</span></div>
+    <div class="row"><label>도움받을 사람·자료:</label><input aria-label="도움받을 사람 자료"></div>
+
+    <h2>나의 첫걸음 약속</h2>
+    <div class="inl"><span>나는</span><input style="width:80px" aria-label="언제"><span>에</span><input class="w" aria-label="무엇을"><span>하고,</span><input style="width:80px" aria-label="확인 시점"><span>에 확인하겠다.</span></div>
+  </div>
+
+  <div class="checks">
+    <label><input type="checkbox">내가 선택함</label>
+    <label><input type="checkbox">실행 가능함</label>
+    <label><input type="checkbox">확인 방법 있음</label>
+    <label><input type="checkbox">점검 날짜 있음</label>
+  </div>
+  <div class="note">진로가 미정이면, 더 알아볼 분야와 탐색 행동을 적어도 괜찮아요.</div>
+</div>
+</div>
+
+<script>
+document.getElementById('png').addEventListener('click', async function(){
+  var btn=this, sheet=document.getElementById('sheet');
+  btn.disabled=true; btn.textContent='저장 중...';
+  try{
+    // 체크박스·입력칸 값이 이미지에 정확히 나오도록 복제본에서 처리
+    var canvas=await html2canvas(sheet,{scale:2,backgroundColor:'#ffffff',useCORS:true,
+      onclone:function(doc){
+        doc.querySelectorAll('#sheet input[type=text],#sheet input:not([type])').forEach(function(el){
+          var orig=sheet.querySelectorAll('input:not([type=checkbox])');
+        });
+      }});
+    var a=document.createElement('a');
+    var name=(sheet.querySelectorAll('.meta input')[1].value||'').trim();
+    a.download='나의_진로_로드맵'+(name?'_'+name:'')+'.png';
+    a.href=canvas.toDataURL('image/png');
+    document.body.appendChild(a); a.click(); a.remove();
+    btn.textContent='저장됨';
+  }catch(e){
+    btn.textContent='저장 실패 — 다시 시도';
+  }
+  setTimeout(function(){btn.disabled=false;btn.textContent='이미지로 저장';},1800);
+});
+document.getElementById('reset').addEventListener('click',function(){
+  if(!confirm('입력한 내용을 모두 지울까요?'))return;
+  document.querySelectorAll('#sheet input').forEach(function(el){
+    if(el.type==='checkbox')el.checked=false; else el.value='';
+  });
+});
+</script>
+</body>
+</html>
 
